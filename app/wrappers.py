@@ -125,7 +125,10 @@ class Person:
         self.actor_image = actor_image
         self.character_name = character_name
         self.character_image = character_image
-        self.age = arrow.get(birthday).humanize().replace('ago', 'old')
+        if birthday:
+            self.age = arrow.get(birthday).humanize().replace('ago', 'old')
+        else:
+            self.age = birthday
 
     def __repr__(self):
         return f'<Person | {self.name}>'
