@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-center my-5">Flask TVMaze API Wrapper</h1>
+
+<form method='POST'>
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <fieldset>
+            {{ form.title.label }}
+            {{ form.title(class='form-control', placeholder='Search TV Show') }}
+        </fieldset>
+        {{ form.submit(class='btn btn-outline-primary my-3') }}
+    </div>
+</form>
+
+<hr>
+
+<div class="row">
+    {% if show_list %}
+    {% for show in show_list %}
+    <div class="col-6 col-md-4">
+        <div class="card"">
+            <img src="{{show.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{show.title}}</h5>
+              <p class="card-text">{{show.summary | safe}}</p>
+              <a href="/show/{{ show.id }}" class="btn btn-primary">See More</a>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock content %}
